@@ -48,21 +48,12 @@ class _CameraPageState extends State<CameraPage> {
     if (!controller.value.isInitialized) {
       return Container();
     }
-    return MaterialApp(
-      home: CameraPreview(controller),
+    return Scaffold(
+      appBar: TitleBar(
+        context: context,
+        customTitle: const Text("Camera Page"),
+      ),
+      body: CameraPreview(controller),
     );
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     appBar: TitleBar(
-  //       context: context,
-  //       customTitle: const Text("Camera Page"),
-  //     ),
-  //     body: const Center(
-  //       child: Text("camera"),
-  //     ),
-  //   );
-  // }
 }
