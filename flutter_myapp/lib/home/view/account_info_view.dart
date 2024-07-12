@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_myapp/camera/camera.dart';
+import 'package:flutter_myapp/location_service.dart';
 import 'package:flutter_myapp/push_notification.dart';
 
 class AccountInfoView extends StatelessWidget {
@@ -52,6 +54,26 @@ class AccountInfoView extends StatelessWidget {
                   }
                 )
               )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Camera"),
+              ElevatedButton(
+                child: const Text("Camera"),
+                onPressed: () => Navigator.pushNamed(context, CameraPage.route),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Location"),
+              ElevatedButton(
+                child: const Text("Location"),
+                onPressed: () => LocationService().getCurrentLocation(),
+              ),
             ],
           ),
         ],

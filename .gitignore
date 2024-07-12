@@ -54,3 +54,4 @@ windows/
 */*.md
 .metadata
 analysis_options.yaml
+build/
