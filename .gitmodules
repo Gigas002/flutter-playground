@@ -1,0 +1,3 @@
+[submodule "flutter_beacon_ex/beacon_scanner"]
+	path = flutter_beacon_ex/beacon_scanner
+	url = https://github.com/Gigas002/beacon_scanner/
