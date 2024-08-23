@@ -44,7 +44,7 @@ app.*.map.json
 
 *.lock
 # android/
-ios/
+# ios/
 linux/
 macos/
 test/

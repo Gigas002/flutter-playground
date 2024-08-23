@@ -36,7 +36,7 @@ dependencies:
     # path: ./flutter_beacon
   # beacon_scanner: any
   beacon_scanner:
-    path: ./beacon_scanner/beacon_scanner
+    path: ./beacon_scanner
   permission_handler: any
   geolocator: any
   app_settings: any

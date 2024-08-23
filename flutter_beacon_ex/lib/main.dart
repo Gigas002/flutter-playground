@@ -9,6 +9,6 @@ final BeaconScanner beaconScanner = BeaconScanner.instance;
 Future<void> main() async {
   Bloc.observer = const Observer();
   WidgetsFlutterBinding.ensureInitialized();
-  await beaconScanner.initialize(true);
+  await beaconScanner.initialize();
   runApp(App());
 }

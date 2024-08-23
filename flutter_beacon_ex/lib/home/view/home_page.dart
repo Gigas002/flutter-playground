@@ -16,13 +16,19 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   StreamSubscription<MonitoringResult>? _streamMonitoring;
-  StreamSubscription<ScanResult>? _streamRanging;
+  StreamSubscription<RangingResult>? _streamRanging;
   final _regions = <Region>[];
 
-   @override
+  @override
   void initState() {
     super.initState();
-    _regions.add(Region(identifier: 'com.beacon'));
+    //_regions.add(Region(identifier: 'com.beacon'));
+    _regions.add(const Region(
+      identifier: 'com.beacon',
+      // beaconId: IBeaconId(proximityUUID: '26a8a572-a4a7-41b5-98b0-a6ebcdbda897'),
+      // beaconId: IBeaconId(proximityUUID: 'E2C56DB5-DFFB-48D2-B060-D0F5A71096E0'),
+      beaconId: IBeaconId(proximityUUID: 'D546DF97-4757-47EF-BE09-3E2DCBDD0C78'),
+    ));
   }
 
   Future<void> _monitorBeacons() async {
@@ -42,12 +48,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _rangeBeacons() async {
-    _streamRanging = beaconScanner.ranging(_regions).listen((ScanResult result) {
+    print("is ranging started? it should have");
+    _streamRanging = beaconScanner.ranging(_regions).listen((RangingResult result) {
       print("ranging:");
       result.beacons.forEach((beacon) {
-        var distance = _calculateDistance(beacon.rssi, beacon.txPower!, 4.0); // 2.0);
-        var accuracy = _calculateAccuracy(beacon.txPower!, beacon.rssi.toDouble());
-        print('rssi: ${beacon.rssi} \n power: ${beacon.txPower!} \n uuid: ${beacon.id.proximityUUID} \n mac: ${beacon.macAddress} \n calculated distance: ${distance} \n accuracy: ${accuracy}');
+        print('uuid ${beacon.id.proximityUUID}');
       });
     });
   }
@@ -60,9 +65,8 @@ class _HomePageState extends State<HomePage> {
     double ratio = rssi * 1.0 / txPower;
     if (ratio < 1.0) {
       return pow(ratio, 10).toDouble();
-    }
-    else {
-      double accuracy =  (0.89976) * pow(ratio, 7.7095) + 0.111;    
+    } else {
+      double accuracy = (0.89976) * pow(ratio, 7.7095) + 0.111;
       return accuracy;
     }
   }
